@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+        <html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>留言板</title>
+    <link rel="stylesheet" href="static/main.css" type="text/css">
+</head>
+<body>
+<div id="main">
+    <h1>留言簿</h1>
+
+    <div id="form-area">
+        <p>请尽情留言吧:</p>
+
+        <form action="/post" method="post">
+            <table>
+                <tr>
+                    <th>姓名</th>
+                    <td>
+                        <input type="text" size="20" name="name">
+                    </td>
+                </tr>
+                <tr>
+                    <th>内容</th>
+                    <td>
+                        <textarea rows="5" cols="40" name="comment"></textarea>
+                    </td>
+                </tr>
+            </table>
+            <p>
+                <button type="submit">提交</button>
+            </p>
+        </form>
+    </div>
+    <div id="entries-area">
+        <h2>留言历史信息</h2>
+
+        <div class="entry">
+            {% for greeting in greeting_list%}
+            <h3>{{greeting[0]}}
+                留言于({{ greeting[2]|datetime_fmt }}):</h3>
+
+            <p>{{ greeting[1]|nl2br }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</body>
+</html>
